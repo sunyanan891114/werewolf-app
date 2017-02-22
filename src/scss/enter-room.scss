@@ -1,0 +1,23 @@
+.enter-room {
+  text-align: center;
+  font-size: 16px;
+
+  .form-element {
+    display: block;
+    margin: 10px auto;
+    width: 70%;
+  }
+
+  &__input {
+    font-size: 16px;
+    width: 90%;
+    @include input;
+  }
+
+  &__button {
+    height: 40px;
+    font-size: 14px;
+    width: 267px;
+    @include button;
+  }
+}

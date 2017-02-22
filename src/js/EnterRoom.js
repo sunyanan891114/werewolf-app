@@ -4,15 +4,15 @@ import {send} from './util/webSocket';
 const CreateRoom = ({onSubmit}) => {
   const submit = (e) => {
     e.preventDefault();
-    send('/app/create', new FormData(document.querySelector('.select-room')));
+    send('/app/create', new FormData(document.querySelector('.enter-room')));
     onSubmit();
   };
 
   return (
-    <form onSubmit={ submit } className="select-room">
-      <label htmlFor="roomNumber">房间号</label><input type="text" id="roomNumber" />
-      <label htmlFor="seatNumber">座位号</label><input type="text" id="seatNumber" />
-      <button>确定</button>
+    <form onSubmit={ submit } className="enter-room">
+      <label className="form-element">房间号：<input type="text" className="enter-room__input"/></label>
+      <label className="form-element">座位号：<input type="text" className="enter-room__input"/></label>
+      <button className="enter-room__button">确定</button>
     </form>
   )
 };
