@@ -55,7 +55,8 @@ export default class WerewolfContainer extends Component {
 
   closeCreateRoom() {
     this.setState({
-      showCreateRoom: false
+      showCreateRoom: false,
+      showWelcome: true
     });
   }
 }

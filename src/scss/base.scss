@@ -1,0 +1,42 @@
+$red: #ED3B37;
+$grey: #C0E5DB;
+
+@mixin input {
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-border-radius: none;
+  -moz-border-radius: none;
+  -ms-border-radius: none;
+  -o-border-radius: none;
+  border-radius: none;
+  display: inline-block;
+  width: 47%;
+  padding: 5px 10px;
+  border: solid 2px #c9c9c9;
+  -webkit-transition: border 0.3s;
+  -moz-transition: border 0.3s;
+  -o-transition: border 0.3s;
+  transition: border 0.3s;
+  &:focus{
+    border: solid 2px #969696;
+    outline: none;
+  }
+}
+
+@mixin button {
+  margin: 1em auto;
+  background: $red;
+  border: none;
+  border-radius: 4px;
+  color: $grey;
+  &:hover {
+    background: darken(#ED3B37, 0.2);
+  }
+}

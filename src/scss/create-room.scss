@@ -1,0 +1,29 @@
+.game-config {
+  text-align: center;
+  font-size: 16px;
+
+  .form-element {
+    display: block;
+    margin: 10px auto;
+    width: 70%;
+  }
+
+  &__input {
+    @include input;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 224px;
+    margin: auto;
+  }
+
+  &__button {
+    font-size: 14px;
+    width: 45%;
+    height: 25px;
+    @include button;
+  }
+
+}
