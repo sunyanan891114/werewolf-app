@@ -6,14 +6,18 @@ const sock = new SockJS(serverUrl);
 
 const stompClient = Stomp.over(sock);
 
-export const send = (endpoint, formData) => {
-  let data = {};
-  for(let pair of formData.entries()) {
-    data[pair[0]] = pair[1];
-  }
-
+export const send = (endpoint, data) => {
+  if (data instanceof FormData) data = convertFormDataToObject(data);
   stompClient.send(endpoint, null, JSON.stringify(data));
   stompClient.subscribe("/queue/abc", (data)=> {
     console.log(data)
   });
+};
+
+const convertFormDataToObject = (formData) => {
+  let data = {};
+  for(let pair of formData.entries()) {
+    data[pair[0]] = pair[1];
+  }
+  return data;
 };
