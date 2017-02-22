@@ -1,24 +1,22 @@
 import React, {Component} from 'react';
+import {send} from './util/webSocket';
 
-export default class CreateRoom extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <form onSubmit={ this.submit }>
-        <label htmlFor="roomNumber">房间号</label><input type="text" id="roomNumber" ref="roomNumber"/>
-        <label htmlFor="seatNumber">座位号</label><input type="text" id="seatNumber" ref="seatNumber"/>
-        <button>确定</button>
-      </form>
-    )
-  }
-
-  submit = (e) => {
+const CreateRoom = ({onSubmit}) => {
+  const submit = (e) => {
     e.preventDefault();
-    console.log(this.refs.roomNumber.value);
-    console.log(this.refs.seatNumber.value);
-    this.props.onSubmit();
-  }
-}
+    send('/app/create', new FormData(document.querySelector('.select-room')));
+    onSubmit();
+  };
+
+  return (
+    <form onSubmit={ submit } className="select-room">
+      <label htmlFor="roomNumber">房间号</label><input type="text" id="roomNumber" />
+      <label htmlFor="seatNumber">座位号</label><input type="text" id="seatNumber" />
+      <button>确定</button>
+    </form>
+  )
+};
+
+export default CreateRoom;
+
+
