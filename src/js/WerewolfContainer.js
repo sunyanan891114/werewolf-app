@@ -20,7 +20,6 @@ export default class WerewolfContainer extends Component {
   }
 
   render() {
-    debugger;
     return (
       <div className="welcome-page">
         { this.state.showWelcome ? <Welcome onCreateRoom={ this.createRoom } onEnterRoom={ this.enterRoom }/> : null }
