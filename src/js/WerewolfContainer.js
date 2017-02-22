@@ -21,7 +21,7 @@ export default class WerewolfContainer extends Component {
 
   render() {
     return (
-      <div className="welcome-page">
+      <div className="werewolf-app-container">
         { this.state.showWelcome ? <Welcome onCreateRoom={ this.createRoom } onEnterRoom={ this.enterRoom }/> : null }
         { this.state.showCreateRoom ? <CreateRoom onSubmit={ this.enterRoom } onClose={ this.closeCreateRoom }/> : null }
         { this.state.showEnterRoom ? <EnterRoom onSubmit={ this.enterGamePage }/> : null }
