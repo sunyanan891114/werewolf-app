@@ -18,5 +18,3 @@ const CreateRoom = ({onSubmit}) => {
 };
 
 export default CreateRoom;
-
-

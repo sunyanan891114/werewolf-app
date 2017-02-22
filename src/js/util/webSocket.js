@@ -9,9 +9,10 @@ const stompClient = Stomp.over(sock);
 export const send = (endpoint, data) => {
   if (data instanceof FormData) data = convertFormDataToObject(data);
   stompClient.send(endpoint, null, JSON.stringify(data));
-  stompClient.subscribe("/queue/abc", (data)=> {
-    console.log(data)
-  });
+};
+
+export const getMessage = (endpoint, callback) => {
+  stompClient.subscribe(endpoint, callback(data));
 };
 
 const convertFormDataToObject = (formData) => {
