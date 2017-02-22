@@ -8,7 +8,7 @@ const stompClient = Stomp.over(sock);
 
 export const send = (endpoint, data) => {
   if (data instanceof FormData) data = convertFormDataToObject(data);
-  stompClient.send(endpoint, null, JSON.stringify(data));
+  stompClient.send(endpoint, {}, JSON.stringify(data));
 };
 
 export const getMessage = (endpoint, callback) => {

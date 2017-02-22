@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {send} from '../util/webSocket'
 
 export default class WitchPage extends Component {
   constructor(props) {
@@ -15,16 +16,11 @@ export default class WitchPage extends Component {
     if (this.props.status) {
       return <div>
         <span>昨天晚上死的是:</span><span>this.props.deadNumber</span>
-        <button>确定</button>
-        <button>取消</button>
+        <button onClick={this.props.sendAction.bind(this, true)}>确定</button>
+        <button onClick={this.props.sendAction.bind(this, false)}>取消</button>
       </div>
     } else {
       return null;
     }
   };
-
-  submit = () => {
-    console.log(this.refs.number.value);
-  };
-
 }
