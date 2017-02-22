@@ -12,7 +12,6 @@ export default class GamePage extends Component {
   }
 
   render() {
-    debugger;
     return (
       <div>
         <span>角色:</span><span>{this.state.roleStatus ? this.state.role : "***"}</span>
