@@ -2,19 +2,22 @@ import React from 'react';
 import WitchPage from './WitchPage';
 import ProphetPage from './ProphetPage';
 import HunterPage from './HunterPage';
-import {send} from '../util/webSocket'
 
-export default (role) => {
-  const sendAction = (action) => {
-    send('/app/join', {value: action});
+const DispatchRole = ({...props}) => {
+  const dispatchRole = () => {
+    switch (props.role) {
+      case"witch":
+        return <WitchPage {...props}/>;
+      case"prophet":
+        return <ProphetPage {...props}/>;
+      case "hunter":
+        return <HunterPage {...props}/>;
+    }
   };
 
-  switch (role) {
-    case "witch" :
-      return <WitchPage sendAction={sendAction}/>;
-    case "prophet":
-      return <ProphetPage sendAction={sendAction}/>;
-    case "hunter":
-      return <HunterPage sendAction={sendAction}/>;
-  }
-}
+  return (<div>
+    {dispatchRole()}
+  </div>);
+};
+
+export default DispatchRole;
