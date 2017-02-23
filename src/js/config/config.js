@@ -1,4 +1,4 @@
-export const serverUrl = "http://10.201.132.92:9000/werewolf-connect";
+export const serverUrl = "http://10.205.22.158:9000/werewolf-connect";
 export const baiduAudio = (message) => {
   return `http://tsn.baidu.com/text2audio?tex=${message}&lan=zh&cuid=1&ctp=1&tok=${baiduTok}`
 };
