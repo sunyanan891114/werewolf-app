@@ -17,12 +17,13 @@ export default class GamePage extends Component {
 
   render() {
     return (
-      <div className="back-ground">
-        <span>角色: </span><span>{this.state.showLabel ? roleName[this.props.response.role] : "***"}</span>
-        <button onClick={this.showOrHideRole}>{this.state.showLabel ? "隐藏" : "查看"}</button>
-        {!this.state.isReady && <button onClick={this.readyForGame}>准备好了</button>}
-        <div>{ this.state.gameProcess }</div>
+      <div className="game_page__container">
+        <span className="game_page__role" onClick={this.showOrHideRole}>{this.state.showLabel ? roleName[this.props.response.role] : "点击显示角色"}</span>
+        <div className="game_page__gameProcess">{ this.state.gameProcess }
+          {!this.state.isReady && <button className="game_page-ready--button" onClick={this.readyForGame}>准备好了</button>}
+        </div>
         { this.renderVoteInput() }
+        <i className={"game_page__avatar game_page__avatar-" + (this.state.showLabel?this.props.response.role:"random")} onClick={this.showOrHideRole}/>
         { dispatchRole({sendAction: this.sendAction, response: this.props.response}) }
       </div>
     )

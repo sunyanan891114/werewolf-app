@@ -1,0 +1,67 @@
+.game_page {
+  &__container {
+    height: 100vh;
+    background-size: contain;
+    background-image: url('../img/rolebackground.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &__gameProcess {
+    text-align: center;
+    position: absolute;
+    color: $white;
+    left: 81px;
+    top: 34%;
+    height: 200px;
+    width: 209px;
+    overflow: hidden;
+  }
+
+  &__role {
+    text-align: center;
+    position: absolute;
+    top: 18%;
+    left: 0;
+    width: 100%;
+    font-size: 33px;
+  }
+
+  &-ready__button {
+    color: $white;
+    display: block;
+    margin: auto;
+  }
+
+  &__avatar {
+    display: block;
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    bottom: 34px;
+    left: 140px;
+    border-radius: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    &-witch {
+      background-image: url('../img/witch.jpg');
+    }
+    &-prophet {
+      background-image: url('../img/prophet.jpg');
+    }
+    &-werewolf {
+      background-image: url('../img/werewolf.jpg');
+    }
+    &-random {
+      background-image: url('../img/random.jpg');
+    }
+    &-villager {
+      background-image: url('../img/villager.jpg');
+    }
+    &-hunter {
+      background-image: url('../img/hunter.jpg');
+    }
+  }
+}
