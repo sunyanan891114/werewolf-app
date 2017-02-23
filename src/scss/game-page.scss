@@ -19,6 +19,7 @@
   }
 
   &__role {
+    color:$black;
     text-align: center;
     position: absolute;
     top: 18%;
@@ -28,7 +29,8 @@
   }
 
   &-ready__button {
-    color: $white;
+    font-size: 20px;
+    @include button;
     display: block;
     margin: auto;
   }

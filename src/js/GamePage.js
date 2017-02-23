@@ -10,7 +10,7 @@ export default class GamePage extends Component {
     this.state = {
       showLabel: false,
       isReady: false,
-      gameProcess: "在这里显示游戏进程"
+      gameProcess: ""
     };
     document.querySelector("body").classList.remove("dark-blue-bg");
     document.querySelector("body").classList.add("black-bg");
@@ -20,9 +20,9 @@ export default class GamePage extends Component {
     return (
       <div className="game_page__container">
         { this.renderVideoMessage()}
-        <span className="game_page__role" onClick={this.showOrHideRole}>{this.state.showLabel ? roleName[this.props.response.role] : "点击显示角色"}</span>
+        <span className="game_page__role" onClick={this.showOrHideRole}>{this.state.showLabel ? roleName[this.props.response.role] : "角色卡"}</span>
         <div className="game_page__gameProcess">{ this.state.gameProcess }
-          {!this.state.isReady && <button className="game_page-ready--button" onClick={this.readyForGame}>准备好了</button>}
+          {!this.state.isReady && <button className="game_page-ready__button" onClick={this.readyForGame}>准备好了</button>}
         </div>
         { this.renderCommandSection() }
         <i className={"game_page__avatar game_page__avatar-" + (this.state.showLabel?this.props.response.role:"random")} onClick={this.showOrHideRole}/>
