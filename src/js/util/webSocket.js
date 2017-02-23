@@ -4,16 +4,16 @@ import Stomp from 'stompjs';
 
 let stompClient = null;
 
-export function connect(endpoint, callback) {
+export function connect(callback) {
   stompClient = Stomp.over(new SockJS(serverUrl));
   stompClient.connect({}, function () {
-    stompClient.subscribe(endpoint, function (greeting) {
-      console.log("get message from server--------------------------" + greeting);
-    });
-
     callback();
   });
 }
+
+export const subscribe = (endpoint, callback) => {
+  stompClient.subscribe(endpoint, callback)
+};
 
 export const send = (endpoint, data) => {
   if (data instanceof FormData) data = convertFormDataToObject(data);

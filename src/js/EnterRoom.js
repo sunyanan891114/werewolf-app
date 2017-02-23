@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {send, connect} from './util/webSocket';
 
-const EnterRoom = ({onSubmit}) => {
+const EnterRoom = ({onSubmit, subscribeCallBack}) => {
   const submit = (e) => {
     e.preventDefault();
-    connect('/user/queue/players', () => {
+    connect(() => {
+      subscribeCallBack('/user/queue/players');
       send('/app/join', new FormData(document.querySelector('.enter-room')));
       onSubmit();
     });
