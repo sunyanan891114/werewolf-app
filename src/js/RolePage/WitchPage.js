@@ -3,6 +3,9 @@ import React, {Component} from 'react';
 export default class WitchPage extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      useSkill : false
+    }
   }
 
   render() {
@@ -11,19 +14,35 @@ export default class WitchPage extends Component {
     </div>
   }
 
-  returnDom = () => {
-    if (this.props.status) {
+  antidoteDom = () => {
+    if (this.props.response.skillStatus.rescue && !this.state.useSkill) {
       return <div>
-        <span>昨天晚上死的是:</span><span>{this.props.deadNumber}</span>
-        <button onClick={this.sendAction.bind(this, "rescue", this.props.deadNumber)}>确定</button>
-        <button onClick={this.sendAction.bind(this, "unrescue", null)}>取消</button>
+        <span>昨天晚上死的是:</span><span>{this.props.response.skillStatus.deadNumber | ""}</span>
+        <button onClick={this.sendAction.bind(this, "rescue", this.props.response.skillStatus.deadNumber, true)}>确定
+        </button>
+        <button onClick={this.sendAction.bind(this, "unrescue", null, false)}>取消</button>
       </div>
-    } else {
-      return null;
     }
   };
 
-  sendAction = (action, target) => {
-    this.props.sendAction(this.props.role + ":" + action, target);
+  poisonDom = () => {
+    if (this.props.response.skillStatus.poison && !this.state.useSkill) {
+      return <div>
+        <input type="text" placeholder="请输入你想要毒杀的号码" ref="killNumber"/>
+        <button onClick={this.sendAction.bind(this, "poison", this.refs.killNumber.value, true)}>确定</button>
+      </div>
+    }
+  };
+
+  returnDom = () => {
+    return <div>
+      {this.antidoteDom()}
+      {this.poisonDom()}
+    </div>
+  };
+
+  sendAction = (action, target, useSkill) => {
+    this.setState({useSkill: useSkill});
+    this.props.sendAction(this.props.response.role + ":" + action, target);
   }
 }

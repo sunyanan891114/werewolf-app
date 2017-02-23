@@ -34,7 +34,7 @@ export default class WerewolfContainer extends Component {
         { this.state.showEnterRoom ? <EnterRoom onSubmit={ this.enterGamePage }
                                                 subscribeCallBack={ this.subscribeCallBack }
                                                 roomNum = { this.state.response.roomNum || null }/> : null }
-        { this.state.showGame ? <GamePage /> : null }
+        { this.state.showGame ? <GamePage response={this.state.response}/> : null }
       </div>
     );
   }

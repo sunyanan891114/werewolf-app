@@ -4,6 +4,6 @@ export const handleResponse = (response) => {
 };
 
 const handleRoomInfoResponse = (roomNum) => {
-  console.log(`roomInfoResponse ${roomNum}`);
+  console.log('roomInfoResponse ${roomNum}');
   return roomNum;
 };

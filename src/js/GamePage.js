@@ -8,13 +8,7 @@ export default class GamePage extends Component {
     this.state = {
       showLabel: false,
       isReady: false,
-      gameProcess: "在这里显示游戏进程",
-      role: "witch",
-      alive: true,
-      daylight: true,
-      message: "",
-      voice: false,
-      skillStatus: {}
+      gameProcess: "在这里显示游戏进程"
     }
   }
 
@@ -26,7 +20,7 @@ export default class GamePage extends Component {
         <button onClick={this.readyForGame} disabled={this.state.isReady}>准备好了</button>
         <div>{this.state.gameProcess}</div>
         <div>
-          { dispatchRole({sendAction: this.sendAction, status: true, role: this.state.role, deadNumber: "11"}) }
+          { dispatchRole({sendAction: this.sendAction, response: this.props.response}) }
           <input type="text" ref="number" placeholder="请输入投票的号码"/>
           <button onClick={this.submit}>确定</button>
         </div>
@@ -49,7 +43,7 @@ export default class GamePage extends Component {
   };
 
   readyForGame = () => {
-    send('/app/players', {gameId: this.props.gameId.toString(), isReady: true});
+    send('/app/players', {roomNum: this.props.roomNum.toString(), isReady: true});
     this.setState({
       isReady: true
     })

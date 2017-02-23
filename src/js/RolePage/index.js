@@ -4,7 +4,7 @@ import ProphetPage from './ProphetPage';
 import HunterPage from './HunterPage';
 
 const dispatchRole = ({...props}) => {
-  switch (props.role) {
+  switch (props.response.role) {
     case"witch":
       return <WitchPage {...props}/>;
     case"prophet":
