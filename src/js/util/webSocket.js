@@ -1,4 +1,4 @@
-import { serverUrl } from '../config/config';
+import {serverUrl} from '../config/config';
 import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
 
@@ -8,7 +8,14 @@ const stompClient = Stomp.over(sock);
 
 export const send = (endpoint, data) => {
   if (data instanceof FormData) data = convertFormDataToObject(data);
-  stompClient.send(endpoint, null, JSON.stringify(data));
+  stompClient.send(endpoint, {}, JSON.stringify(data));
+};
+
+export const connection = (endpoint, callback) => {
+  stompClient.connect({}, function (frame) {
+    console.log('Connected: ' + frame);
+    stompClient.subscribe(endpoint, callback(data));
+  });
 };
 
 export const getMessage = (endpoint, callback) => {
@@ -17,7 +24,7 @@ export const getMessage = (endpoint, callback) => {
 
 const convertFormDataToObject = (formData) => {
   let data = {};
-  for(let pair of formData.entries()) {
+  for (let pair of formData.entries()) {
     data[pair[0]] = pair[1];
   }
   return data;
