@@ -15,7 +15,7 @@ export default class GamePage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="back-ground">
         <span>角色: </span><span>{this.state.showLabel ? roleName[this.props.response.role] : "***"}</span>
         <button onClick={this.showOrHideRole}>{this.state.showLabel ? "隐藏" : "查看"}</button>
         {!this.state.isReady && <button onClick={this.readyForGame}>准备好了</button>}
