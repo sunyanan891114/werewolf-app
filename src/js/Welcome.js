@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Welcome = ({onCreateRoom, onEnterRoom}) => {
+  document.querySelector("body").classList.add("dark-blue-bg");
   return (
     <div className="welcome">
       <h1 className="welcome__title">狼人杀</h1>

@@ -1,8 +1,21 @@
-.werewolf-app {
-  &-container {
-    max-width: 500px;
-    height: 100vh;
-    margin: auto;
-    color: #FFF;
+.werewolf-app-container {
+  max-width: 500px;
+  height: 100vh;
+  margin: auto;
+  color: #FFF;
+  background-size: cover;
+}
+
+.black-bg {
+  background-color: $black;
+  .werewolf-app-container {
+    background-image: url('../img/rolebackground.jpg');
+  }
+}
+
+.dark-blue-bg {
+  background-color: $dark-blue;
+  .werewolf-app-container {
+    background-image: url('../img/background.jpg');
   }
 }

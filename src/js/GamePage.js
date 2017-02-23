@@ -11,6 +11,8 @@ export default class GamePage extends Component {
       isReady: false,
       gameProcess: "在这里显示游戏进程"
     };
+    document.querySelector("body").classList.remove("dark-blue-bg");
+    document.querySelector("body").classList.add("black-bg");
   }
 
   render() {
