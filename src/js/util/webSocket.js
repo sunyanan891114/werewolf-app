@@ -16,14 +16,14 @@ export const subscribe = (callback) => {
 };
 
 export const send = (endpoint, data) => {
-  if (data instanceof FormData) data = convertFormDataToObject(data);
+  if (data instanceof Array) data = convertFormDataToObject(data);
   stompClient.send(endpoint, {}, JSON.stringify(data));
 };
 
 const convertFormDataToObject = (formData) => {
   let data = {};
-  for (let pair of formData.entries()) {
-    data[pair[0]] = pair[1];
+  for (let pair of formData) {
+    data[pair.name] = pair.value;
   }
   return data;
 };

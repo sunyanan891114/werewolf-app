@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import {send, connect, subscribe} from './util/webSocket';
+import $ from 'jquery';
 
 const EnterRoom = ({onSubmit, subscribeCallBack, roomNum}) => {
   const submit = (e) => {
     e.preventDefault();
-    let formData = new FormData(document.querySelector('.enter-room'));
+    let formData = $('.enter-room').serializeArray();
     if (roomNum) {
-      formData.append('roomNum', roomNum);
+      formData.push({name: "roomNum", value: roomNum});
       send('/app/join', formData);
       onSubmit();
     } else {

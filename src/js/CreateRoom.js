@@ -1,12 +1,13 @@
 import React from 'react';
 import {send, connect, subscribe} from './util/webSocket';
+import $ from "jquery";
 
 const CreateRoom = ({onSubmit, onClose, subscribeCallBack}) => {
   const submit = (e) => {
     e.preventDefault();
     connect(() => {
       subscribe(subscribeCallBack);
-      send('/app/create', new FormData(document.querySelector('.game-config')));
+      send('/app/create', $('.game-config').serializeArray());
       onSubmit();
     });
   };
