@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {send, connect} from './util/webSocket';
 
-const CreateRoom = ({onSubmit}) => {
+const EnterRoom = ({onSubmit}) => {
   const submit = (e) => {
     e.preventDefault();
     connect('/user/queue/players', () => {
@@ -19,4 +19,4 @@ const CreateRoom = ({onSubmit}) => {
   )
 };
 
-export default CreateRoom;
+export default EnterRoom;
