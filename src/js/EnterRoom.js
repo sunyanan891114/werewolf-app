@@ -6,6 +6,7 @@ const EnterRoom = ({onSubmit, subscribeCallBack, roomNum}) => {
     e.preventDefault();
     let formData = new FormData(document.querySelector('.enter-room'));
     if (roomNum) formData.append('roomNum', roomNum);
+    window.roomNum = formData.get('roomnum');
 
     roomNum ? send('/app/join', formData) :
       connect(() => {

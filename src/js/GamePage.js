@@ -15,7 +15,7 @@ export default class GamePage extends Component {
 
   render() {
     return (
-      <div className="back-ground">
+      <div>
         <span>角色: </span><span>{this.state.showLabel ? roleName[this.props.response.role] : "***"}</span>
         <button onClick={this.showOrHideRole}>{this.state.showLabel ? "隐藏" : "查看"}</button>
         {!this.state.isReady && <button onClick={this.readyForGame}>准备好了</button>}
@@ -55,7 +55,7 @@ export default class GamePage extends Component {
   };
 
   readyForGame = () => {
-    send('/app/players', {roomNum: this.props.roomNum.toString(), isReady: true});
+    send('/app/players', {roomNum: window.roomNum,isReady: true});
     this.setState({
       isReady: true
     });
