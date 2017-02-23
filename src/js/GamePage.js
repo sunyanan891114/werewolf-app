@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import dispatchRole from './RolePage';
 import {send} from './util/webSocket';
+import {baiduAudio} from './config/config';
 import roleName from './util/roleName';
 
 export default class GamePage extends Component {
@@ -18,11 +19,12 @@ export default class GamePage extends Component {
   render() {
     return (
       <div className="game_page__container">
+        { this.renderVideoMessage()}
         <span className="game_page__role" onClick={this.showOrHideRole}>{this.state.showLabel ? roleName[this.props.response.role] : "点击显示角色"}</span>
         <div className="game_page__gameProcess">{ this.state.gameProcess }
           {!this.state.isReady && <button className="game_page-ready--button" onClick={this.readyForGame}>准备好了</button>}
         </div>
-        { this.renderVoteInput() }
+        { this.renderCommandSection() }
         <i className={"game_page__avatar game_page__avatar-" + (this.state.showLabel?this.props.response.role:"random")} onClick={this.showOrHideRole}/>
         { dispatchRole({sendAction: this.sendAction, response: this.props.response}) }
       </div>
@@ -35,12 +37,20 @@ export default class GamePage extends Component {
     });
   }
 
-  renderVoteInput() {
-    return this.props.response.day ?
+  renderVideoMessage() {
+    return this.props.response.voice ?
+      <video controls autoplay name="media" style="display:none">
+        <source src={ baiduAudio(this.state.gameProcess) } type="dio/mp3"/>
+      </video> : null
+  }
+
+  renderCommandSection() {
+    debugger;
+    return this.props.response.daylight ?
       <div>
         <input type="text" ref="number" placeholder="请输入投票的号码"/>
         <button onClick={this.submit}>确定</button>
-      </div> : null;
+      </div> : dispatchRole({sendAction: this.sendAction, response: this.props.response});
   }
 
   submit = () => {
@@ -58,7 +68,7 @@ export default class GamePage extends Component {
   };
 
   readyForGame = () => {
-    send('/app/players', {roomNum: window.roomNum,isReady: true, seatNum: window.seatNum});
+    send('/app/players', {roomNum: window.roomNum, isReady: true, seatNum: window.seatNum});
     this.setState({
       isReady: true
     });
