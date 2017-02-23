@@ -45,7 +45,6 @@ export default class GamePage extends Component {
   }
 
   renderCommandSection() {
-    debugger;
     return this.props.response.daylight ?
       <div>
         <input type="text" ref="number" placeholder="请输入投票的号码"/>
