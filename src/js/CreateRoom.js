@@ -1,11 +1,13 @@
 import React from 'react';
-import {send} from './util/webSocket';
+import {send, connect} from './util/webSocket';
 
 const CreateRoom = ({onSubmit, onClose}) => {
   const submit = (e) => {
     e.preventDefault();
-    send('/app/create', new FormData(document.querySelector('.game-config')));
-    onSubmit();
+    connect('/user/queue/judge', () => {
+      send('/app/create', new FormData(document.querySelector('.game-config')));
+      onSubmit();
+    });
   };
 
   return (
