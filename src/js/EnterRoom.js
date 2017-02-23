@@ -1,14 +1,18 @@
 import React, {Component} from 'react';
-import {send, connect} from './util/webSocket';
+import {send, connect, subscribe} from './util/webSocket';
 
 const EnterRoom = ({onSubmit, subscribeCallBack, roomNum}) => {
   const submit = (e) => {
     e.preventDefault();
-    connect(() => {
-      subscribeCallBack('/user/queue/players');
-      send('/app/join', new FormData(document.querySelector('.enter-room')));
-      onSubmit();
-    });
+    let formData = new FormData(document.querySelector('.enter-room'));
+    if (roomNum) formData.append('roomNum', roomNum);
+
+    roomNum ? send('/app/join', formData) :
+      connect(() => {
+        subscribe(subscribeCallBack);
+        send('/app/join', formData);
+        onSubmit();
+      });
   };
 
   return (

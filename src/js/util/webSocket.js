@@ -11,8 +11,8 @@ export function connect(callback) {
   });
 }
 
-export const subscribe = (endpoint, callback) => {
-  stompClient.subscribe(endpoint, callback)
+export const subscribe = (callback) => {
+  stompClient.subscribe('/user/queue/players', callback)
 };
 
 export const send = (endpoint, data) => {
