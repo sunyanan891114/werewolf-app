@@ -6,12 +6,13 @@ export default class GamePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      showLabel: false,
+      isReady:false,
       role: "witch",
       alive: true,
       daylight: true,
       message: "",
       voice: false,
-      showLabel: false,
       skillStatus: {}
     }
   }
@@ -21,6 +22,7 @@ export default class GamePage extends Component {
       <div>
         <span>角色:</span><span>{this.state.showLabel ? this.state.role : "***"}</span>
         <button onClick={this.showOrHideRole}>{this.state.showLabel ? "隐藏" : "查看"}</button>
+        <button onClick={this.readyForGame} disabled={this.state.isReady}>准备好了</button>
         <div>
           { dispatchRole({sendAction: this.sendAction, status: true, role: this.state.role, deadNumber: "11"}) }
           <input type="text" ref="number" placeholder="请输入投票的号码"/>
@@ -41,6 +43,13 @@ export default class GamePage extends Component {
   showOrHideRole = () => {
     this.setState({
       showLabel: !this.state.showLabel
+    })
+  };
+
+  readyForGame = () => {
+    send('/app/players', {gameId: this.props.gameId.toString(), isReady: true});
+    this.setState({
+      isReady: true
     })
   }
 }
