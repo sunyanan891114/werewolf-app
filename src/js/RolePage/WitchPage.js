@@ -18,9 +18,9 @@ export default class WitchPage extends Component {
     if (this.props.response.skillStatus.rescue && !this.state.useSkill) {
       return <div>
         <span>昨天晚上死的是:</span><span>{this.props.response.skillStatus.deadNumber | ""}</span>
-        <button onClick={this.sendAction.bind(this, "rescue", this.props.response.skillStatus.deadNumber, true)}>确定
+        <button onClick={this.sendAction.bind(this, "rescue", this.props.response.skillStatus.deadNumber, true)} className="role-page__confirm-btn">确定
         </button>
-        <button onClick={this.sendAction.bind(this, "unrescue", null, false)}>取消</button>
+        <button onClick={this.sendAction.bind(this, "unrescue", null, false)} className="role-page__confirm-btn">取消</button>
       </div>
     }
   };
@@ -28,8 +28,8 @@ export default class WitchPage extends Component {
   poisonDom = () => {
     if (this.props.response.skillStatus.poison && !this.state.useSkill) {
       return <div>
-        <input type="text" placeholder="请输入你想要毒杀的号码" ref="killNumber"/>
-        <button onClick={this.sendAction.bind(this, "poison", true)}>确定</button>
+        <input type="text" placeholder="请输入你想要毒杀的号码" ref="killNumber" className="role-page__input"/>
+        <button onClick={this.sendAction.bind(this, "poison", true)} className="role-page__confirm-btn">确定</button>
       </div>
     }
   };
