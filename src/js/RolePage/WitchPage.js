@@ -4,7 +4,7 @@ export default class WitchPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      useSkill : false
+      useSkill: false
     }
   }
 
@@ -29,7 +29,7 @@ export default class WitchPage extends Component {
     if (this.props.response.skillStatus.poison && !this.state.useSkill) {
       return <div>
         <input type="text" placeholder="请输入你想要毒杀的号码" ref="killNumber"/>
-        <button onClick={this.sendAction.bind(this, "poison", this.refs.killNumber.value, true)}>确定</button>
+        <button onClick={this.sendAction.bind(this, "poison", true)}>确定</button>
       </div>
     }
   };
@@ -41,8 +41,8 @@ export default class WitchPage extends Component {
     </div>
   };
 
-  sendAction = (action, target, useSkill) => {
+  sendAction = (action, useSkill) => {
     this.setState({useSkill: useSkill});
-    this.props.sendAction(this.props.response.role + ":" + action, target);
+    this.props.sendAction(this.props.response.role + ":" + action, this.refs.killNumber.value);
   }
 }
