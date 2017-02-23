@@ -8,7 +8,7 @@ module.exports = {
   entry: [
     'eventsource-polyfill', // necessary for hot reloading with IE
     'webpack-hot-middleware/client',
-    './examples/scss/default.scss',
+    './src/scss/default.scss',
     './examples/js/index'
   ],
   output: {

@@ -15,5 +15,4 @@ export default class ProphetPage extends Component {
   sendAction = (action, target) => {
     this.props.sendAction(this.props.response.role + ":" + action, target);
   };
-
 }

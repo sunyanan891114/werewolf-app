@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import dispatchRole from './RolePage';
-import {send} from './util/webSocket'
+import {send} from './util/webSocket';
 
 export default class GamePage extends Component {
   constructor(props) {
@@ -14,7 +14,7 @@ export default class GamePage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="back-ground">
         <span>角色:</span><span>{this.state.showLabel ? this.state.role : "***"}</span>
         <button onClick={this.showOrHideRole}>{this.state.showLabel ? "隐藏" : "查看"}</button>
         <button onClick={this.readyForGame} disabled={this.state.isReady}>准备好了</button>
