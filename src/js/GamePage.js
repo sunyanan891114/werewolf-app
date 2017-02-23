@@ -41,9 +41,15 @@ export default class GamePage extends Component {
 
   renderVideoMessage() {
     return this.props.response.voice ?
-      <audio controls autoPlay name="media" style={{display: "none"}}>
+      <audio controls autoPlay name="media" style={{display: "none"}} className="audio-message">
         <source src={ baiduAudio(this.state.gameProcess) } type="audio/mp3"/>
       </audio> : null
+  }
+
+  componentDidMount() {
+    if (this.props.response.voice) {
+      document.querySelector('.audio-message').play();
+    }
   }
 
   renderCommandSection() {
