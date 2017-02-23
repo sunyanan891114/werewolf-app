@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import dispatchRole from './RolePage';
 import {send} from './util/webSocket';
+import roleName from './util/roleName';
 
 export default class GamePage extends Component {
   constructor(props) {
@@ -9,23 +10,34 @@ export default class GamePage extends Component {
       showLabel: false,
       isReady: false,
       gameProcess: "在这里显示游戏进程"
-    }
+    };
   }
 
   render() {
     return (
       <div className="back-ground">
-        <span>角色:</span><span>{this.state.showLabel ? this.state.role : "***"}</span>
+        <span>角色: </span><span>{this.state.showLabel ? roleName[this.props.response.role] : "***"}</span>
         <button onClick={this.showOrHideRole}>{this.state.showLabel ? "隐藏" : "查看"}</button>
-        <button onClick={this.readyForGame} disabled={this.state.isReady}>准备好了</button>
-        <div>{this.state.gameProcess}</div>
-        <div>
-          { dispatchRole({sendAction: this.sendAction, response: this.props.response}) }
-          <input type="text" ref="number" placeholder="请输入投票的号码"/>
-          <button onClick={this.submit}>确定</button>
-        </div>
+        {!this.state.isReady && <button onClick={this.readyForGame}>准备好了</button>}
+        <div>{ this.state.gameProcess }</div>
+        { this.renderVoteInput() }
+        { dispatchRole({sendAction: this.sendAction, response: this.props.response}) }
       </div>
     )
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      gameProcess: nextProps.response.message
+    });
+  }
+
+  renderVoteInput() {
+    return this.props.response.day ?
+      <div>
+        <input type="text" ref="number" placeholder="请输入投票的号码"/>
+        <button onClick={this.submit}>确定</button>
+      </div> : null;
   }
 
   submit = () => {
@@ -46,6 +58,6 @@ export default class GamePage extends Component {
     send('/app/players', {roomNum: this.props.roomNum.toString(), isReady: true});
     this.setState({
       isReady: true
-    })
+    });
   }
 }
