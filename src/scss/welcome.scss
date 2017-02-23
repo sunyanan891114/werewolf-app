@@ -1,4 +1,8 @@
 .welcome {
+  height: 100vh;
+  background-size: cover;
+  background-image: url('../img/background.jpg');
+
   &__title {
     font-size: 36px;
     text-align: center;

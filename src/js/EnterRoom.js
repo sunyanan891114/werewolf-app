@@ -5,15 +5,20 @@ const EnterRoom = ({onSubmit, subscribeCallBack, roomNum}) => {
   const submit = (e) => {
     e.preventDefault();
     let formData = new FormData(document.querySelector('.enter-room'));
-    if (roomNum) formData.append('roomNum', roomNum);
-    window.roomNum = formData.get('roomnum');
-
-    roomNum ? send('/app/join', formData) :
+    if (roomNum) {
+      formData.append('roomNum', roomNum);
+      send('/app/join', formData);
+      onSubmit();
+    } else {
       connect(() => {
         subscribe(subscribeCallBack);
         send('/app/join', formData);
         onSubmit();
       });
+    }
+
+    window.roomNum = formData.get('roomNum');
+    window.seatNum = formData.get('seatNum');
   };
 
   return (

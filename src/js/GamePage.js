@@ -55,7 +55,7 @@ export default class GamePage extends Component {
   };
 
   readyForGame = () => {
-    send('/app/players', {roomNum: window.roomNum,isReady: true});
+    send('/app/players', {roomNum: window.roomNum,isReady: true, seatNum: window.seatNum});
     this.setState({
       isReady: true
     });
