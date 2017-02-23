@@ -18,8 +18,8 @@ const EnterRoom = ({onSubmit, subscribeCallBack, roomNum}) => {
       });
     }
 
-    window.roomNum = formData.get('roomNum');
-    window.seatNum = formData.get('seatNum');
+    window.roomNum = formData.find(x => x.name == "roomNum").value;
+    window.seatNum = formData.find(x => x.name == "seatNum").value;
   };
 
   return (
