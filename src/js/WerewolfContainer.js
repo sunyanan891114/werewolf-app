@@ -14,7 +14,8 @@ export default class WerewolfContainer extends Component {
       showCreateRoom: false,
       showEnterRoom: false,
       showGame: false,
-      showWelcome: true
+      showWelcome: true,
+      response: {}
     };
     this.createRoom = this.createRoom.bind(this);
     this.closeCreateRoom = this.closeCreateRoom.bind(this);
@@ -27,8 +28,12 @@ export default class WerewolfContainer extends Component {
     return (
       <div className="werewolf-app-container">
         { this.state.showWelcome ? <Welcome onCreateRoom={ this.createRoom } onEnterRoom={ this.enterRoom }/> : null }
-        { this.state.showCreateRoom ? <CreateRoom onSubmit={ this.enterRoom } onClose={ this.closeCreateRoom } subscribeCallBack={ this.subscribeCallBack }/> : null }
-        { this.state.showEnterRoom ? <EnterRoom onSubmit={ this.enterGamePage } subscribeCallBack={ this.subscribeCallBack }/> : null }
+        { this.state.showCreateRoom ? <CreateRoom onSubmit={ this.enterRoom }
+                                                  onClose={ this.closeCreateRoom }
+                                                  subscribeCallBack={ this.subscribeCallBack }/> : null }
+        { this.state.showEnterRoom ? <EnterRoom onSubmit={ this.enterGamePage }
+                                                subscribeCallBack={ this.subscribeCallBack }
+                                                roomNum = { this.state.response.roomNum || null }/> : null }
         { this.state.showGame ? <GamePage /> : null }
       </div>
     );
@@ -37,7 +42,7 @@ export default class WerewolfContainer extends Component {
   subscribeCallBack(endpoint) {
     subscribe(endpoint, (response) => {
       this.setState({
-        message: handleResponse(response)
+        response: handleResponse(response)
       });
     });
   }
