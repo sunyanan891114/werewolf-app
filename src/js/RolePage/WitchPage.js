@@ -43,6 +43,6 @@ export default class WitchPage extends Component {
 
   sendAction = (action, useSkill) => {
     this.setState({useSkill: useSkill});
-    this.props.sendAction(this.props.response.role + ":" + action, this.refs.killNumber.value);
+    this.props.sendAction(action, this.refs.killNumber.value);
   }
 }

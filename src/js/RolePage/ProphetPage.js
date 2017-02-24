@@ -11,7 +11,7 @@ export default class ProphetPage extends Component {
 
   showResultDOM = () => {
     return <div>
-      <span>验证结果是:</span><span>{this.props.response.skillStatus.result}</span>
+      <span>验证结果是:</span><span>{this.props.response.targetNum}</span>
       <button className="role-page__confirm-btn">确定</button>
     </div>
   };
@@ -24,6 +24,6 @@ export default class ProphetPage extends Component {
   };
 
   sendAction = () => {
-    this.props.sendAction("check", this.refs.predictNumber.value);
+    this.props.sendAction("prophesy", this.refs.predictNumber.value);
   }
 }

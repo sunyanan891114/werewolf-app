@@ -27,6 +27,14 @@ export default class handleResponse {
     return this.response.voice;
   }
 
+  handleResult() {
+    return this.response.result;
+  }
+
+  handleTargetNum() {
+    return this.response.targetNum;
+  }
+
   parse() {
     return {
       roomNum: this.handleRoomNum(),
@@ -34,7 +42,9 @@ export default class handleResponse {
       gameProcess: this.handleMessage(),
       daylight: this.handleDaylight(),
       skillStatus: this.handleSkillStatus(),
-      voice: this.handleVoice()
+      voice: this.handleVoice(),
+      result: this.handleResult(),
+      targetNum: this.handleTargetNum()
     }
   }
 }
