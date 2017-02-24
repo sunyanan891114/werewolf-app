@@ -21,11 +21,14 @@ export default class GameProcess extends Component {
 
   renderCommandSection() {
     return this.state.isReady ?
-      dispatchRole({sendAction: this.sendAction, role: this.props.role, daylight: this.props.daylight}) : null;
+      dispatchRole({sendAction: this.sendAction,
+                    role: this.props.role,
+                    daylight: this.props.daylight,
+                    skill: this.props.skill}) : null;
   }
 
   sendAction = (action, target) => {
-    send('/app/join', {action: action, target: target});
+    send('/app/player', {action: action, target: target, roomNum: window.roomNum, seatNum: window.seatNum});
   };
 
   readyForGame = () => {

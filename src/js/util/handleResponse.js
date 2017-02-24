@@ -1,9 +1,40 @@
-export const handleResponse = (response) => {
-  return JSON.parse(response.body);
-  if(response.roomNum) handleRoomInfoResponse(response.roomNum);
-};
+export default class handleResponse {
+  constructor(response) {
+    this.response = JSON.parse(response.body);
+  }
 
-const handleRoomInfoResponse = (roomNum) => {
-  console.log('roomInfoResponse ${roomNum}');
-  return roomNum;
-};
+  handleRoomNum() {
+    return this.response.roomNum;
+  };
+
+  handleRole() {
+    return this.response.role;
+  };
+
+  handleMessage() {
+    return this.response.message;
+  };
+
+  handleDaylight() {
+    return this.response.daylight;
+  }
+
+  handleSkill() {
+    return "someSkill";
+  }
+
+  handleVoice() {
+    return this.response.voice;
+  }
+
+  parse() {
+    return {
+      roomNum: this.handleRoomNum(),
+      role: this.handleRole(),
+      gameProcess: this.handleMessage(),
+      daylight: this.handleDaylight(),
+      skill: this.handleSkill(),
+      voice: this.handleVoice()
+    }
+  }
+}

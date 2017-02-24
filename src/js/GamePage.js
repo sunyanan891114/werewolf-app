@@ -16,11 +16,11 @@ export default class GamePage extends Component {
   render() {
     return (
       <div className="game_page__container">
-        <MessageAudio gameProcess={this.props.response.message} voice={this.props.response.voice}/>
+        <MessageAudio gameProcess={this.props.response.gameProcess} voice={this.props.response.voice}/>
         <span className="game_page__role"
               onClick={this.showOrHideRole}>{this.state.showLabel ? roleName[this.props.response.role] : "角色卡"}</span>
         <GameProcess role={this.props.response.role} daylight={this.props.response.daylight}
-                     gameProcess={this.props.response.message}/>
+                     gameProcess={this.props.response.gameProcess} skill={this.props.response.skill}/>
         <i className={"game_page__avatar game_page__avatar-" + (this.state.showLabel ? this.props.response.role : "random")}
           onClick={this.showOrHideRole}/>
       </div>

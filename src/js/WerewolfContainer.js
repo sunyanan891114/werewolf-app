@@ -4,7 +4,7 @@ import EnterRoom from './EnterRoom';
 import GamePage from './GamePage';
 import Welcome from './Welcome';
 
-import {handleResponse} from './util/handleResponse';
+import handleResponse from './util/handleResponse';
 
 export default class WerewolfContainer extends Component {
   constructor(props) {
@@ -40,7 +40,7 @@ export default class WerewolfContainer extends Component {
 
   changeResponse(response) {
     this.setState({
-      response: handleResponse(response)
+      response: new handleResponse(response).parse()
     });
   }
 
