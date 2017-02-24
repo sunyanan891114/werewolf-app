@@ -28,7 +28,7 @@ export default class GameProcess extends Component {
   }
 
   sendAction = (action, target) => {
-    send('/app/player', {action: action, target: target, roomNum: window.roomNum, seatNum: window.seatNum});
+    send('/app/play', {action: action, target: target, roomNum: window.roomNum, seatNum: window.seatNum});
   };
 
   readyForGame = () => {

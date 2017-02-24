@@ -7,7 +7,7 @@ import WerewolfPage from './WerewolfPage';
 
 const dispatchRole = ({...props}) => {
   if (props.daylight) {
-    return props.role == 'hunter' && props.kill.useSkill ?  <HunterPage {...props}/> : <CommonPage {...props}/>;
+    return props.role == 'hunter' ?  <HunterPage {...props}/> : <CommonPage {...props}/>;
   }
   switch (props.role) {
     case"witch":
