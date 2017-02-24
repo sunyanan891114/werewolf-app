@@ -19,8 +19,8 @@ export default class handleResponse {
     return this.response.daylight;
   }
 
-  handleSkill() {
-    return "someSkill";
+  handleSkillStatus() {
+    return this.response.skillStatus;
   }
 
   handleVoice() {
@@ -33,7 +33,7 @@ export default class handleResponse {
       role: this.handleRole(),
       gameProcess: this.handleMessage(),
       daylight: this.handleDaylight(),
-      skill: this.handleSkill(),
+      skillStatus: this.handleSkillStatus(),
       voice: this.handleVoice()
     }
   }
