@@ -6,7 +6,8 @@ export default class GameProcess extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isReady: false
+      isReady: false,
+      showCommandSection: false
     };
   }
 
@@ -19,8 +20,16 @@ export default class GameProcess extends Component {
     );
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.gameProcess == "") {
+      this.setState({
+        showCommandSection:true
+      });
+    }
+  }
+
   renderCommandSection() {
-    return this.state.isReady ?
+    return this.state.isReady && this.state.showCommandSection ?
       dispatchRole({sendAction: this.sendAction,
                     role: this.props.role,
                     daylight: this.props.daylight,
@@ -29,6 +38,9 @@ export default class GameProcess extends Component {
 
   sendAction = (action, target) => {
     send('/app/play', {action: action, target: target, roomNum: window.roomNum, seatNum: window.seatNum});
+    this.setState({
+      showCommandSection: false
+    });
   };
 
   readyForGame = () => {
