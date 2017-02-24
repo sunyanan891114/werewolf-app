@@ -5,7 +5,6 @@ import HunterPage from './HunterPage';
 import CommonPage from './CommonPage';
 
 const dispatchRole = ({...props}) => {
-  debugger;
   if (props.daylight) return <CommonPage {...props}/>;
   switch (props.role) {
     case"witch":
